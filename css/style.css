@@ -1,0 +1,218 @@
+@font-face {
+    font-family: "RedHatText";
+    src: url("/fonts/RedHatText-Bold.woff2") format("woff2"),
+         url("/fonts/RedHatText-Bold.woff") format("woff");
+}
+
+:root {
+    --width-countdown: 200px; 
+    --height-countdown: 189px; 
+    --border-radius: 8px; 
+    --height-shadow: 10px;
+}
+
+body {
+    font-family: RedHatText, sans-serif;
+    text-transform: uppercase;
+    background-color: hsl(235, 16%, 14%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bgStars {
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+}
+
+h1 {
+    font-size: 30px;
+    color: white;
+    margin-top: 17vh;
+    margin-bottom: 11vh;
+    letter-spacing: 13px;
+}
+
+#timer {
+    display: flex;
+    gap: 43px;
+    transform-style: preserve-3d;
+}
+
+.countdown {
+    width: var(--width-countdown);
+    height: calc(var(--height-countdown));
+    box-shadow: 0 var(--height-shadow) 0 hsl(234, 17%, 12%);
+}
+
+.countdown_up, .countdown_down {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    width: var(--width-countdown);
+    height: calc(var(--height-countdown) / 2);
+    background-color: hsl(236, 21%, 26%);
+}
+
+.countdown_up, .countdown_up_shadow, .countdown {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.countdown_down, .countdown {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.countdown_up  {
+    align-items: flex-end;
+    backface-visibility: hidden;
+}
+
+.countdown_down {
+    align-items: flex-start;
+    backface-visibility: hidden;
+}
+
+.countdown .countdown_up {
+    transform: rotateX(-180deg);
+}
+
+.flip {
+    transform-origin: center calc( (var(--height-countdown) / 2) + .5px);
+    animation-name: flip;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+.newFlip {
+    transform-origin: center -.5px;
+    animation-name: newFlip;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flip {
+    from {
+        transform: rotateX(0deg);
+    }
+  
+    to {
+        transform: rotateX(-180deg);
+    }
+}
+
+@keyframes newFlip {
+    from {
+        transform: rotateX(180deg);
+    }
+  
+    to {
+        transform: rotateX(0deg);
+    }
+}
+
+
+.intersection_left, .intersection_right {
+    height: calc(var(--border-radius) * 2);
+    width: var(--border-radius);
+    background-color: hsl(234, 17%, 12%);
+}
+
+.intersection_right {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.intersection_left {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.intersection_up {
+    position: relative;
+    z-index: 3;
+    margin-bottom: calc(var(--border-radius) * -1);
+}
+
+.intersection_down {
+    margin-top: calc(var(--border-radius) * -1);
+}
+
+.countdown_up_shadow {
+    width: var(--width-countdown);
+    height: calc( (var(--height-countdown) / 2) - .5px);
+    position: absolute;
+    background-color: rgba(0, 0, 0, .2);
+    z-index: 3;
+    border-bottom: solid rgba(0, 0, 0, .2) .5px;
+}
+
+.title {
+    text-align: center;
+    color: hsl(237, 18%, 59%);
+    margin: 30px;
+    font-size: 18px;
+    letter-spacing: 8px;
+}
+
+.attribution {
+    font-family: sans-serif;
+    text-transform: none;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    opacity: .4; 
+    font-size: 15px;  
+}
+
+.attribution a {
+    color: hsl(237, 18%, 59%);
+    text-decoration: none;
+}
+
+.attribution:hover {
+    opacity: 1;
+}
+
+#bgPatternHills {
+    position: fixed;
+    bottom: -50px;
+    width: 100vw;
+    z-index: 0;
+}
+
+#socialNetworks {
+    position: fixed;
+    bottom: 50px;
+    z-index: 1;
+    display: flex;
+    gap: 41px;
+}
+
+.socialNetworks_logo {
+    height: 25px;
+    cursor: pointer;
+}
+
+.socialNetworks_logo:hover path {
+    fill: hsl(345, 95%, 68%);
+}
+
+/* VALUE */
+
+.value {
+    text-align: center;
+    font-size: calc(var(--width-countdown) / 1.7);
+    color: hsl(345, 95%, 68%);
+    height: 0px;
+    position: relative;
+    bottom: calc(var(--height-countdown)/2.5);
+}
+
+.new_countdown {
+    position: absolute; 
+    z-index: 1;
+}
+
